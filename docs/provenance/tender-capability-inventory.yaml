@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-08-07T14:02:47Z",
+  "mode": "read-only-source-inventory",
+  "source": {"repository": "tender", "commit": "7647c209550eb7def6b7d3d2776e13ea6763dabe", "workingTree": "clean"},
+  "summary": {
+    "macosRustNativeTests": 123,
+    "projectsNativeTests": 0,
+    "windowsProjectsImplementation": "static-preview-data",
+    "linuxImplementation": "not-found",
+    "selectedFirstSlice": "htbx.projects"
+  },
+  "capabilities": [
+    {"id": "htbx.projects", "observed": "curated metadata or depth-two Git discovery; fail-soft; deterministic sort", "decision": "first-slice"},
+    {"id": "htbx.diagnostics", "observed": "system/service snapshot and bounded log tail", "decision": "defer-fleet-coupled-and-no-redaction-contract"},
+    {"id": "htbx.updates", "observed": "Windows empty-list stub only", "decision": "planned-no-real-source"},
+    {"id": "htbx.desktop-experience", "observed": "Tauri lifecycle, tray, windows, theme, and React shells", "decision": "defer-hard-shipyard-workspace-shell-dependency"}
+  ],
+  "additionalTenderCapabilitiesNotSelected": [
+    "application catalog/install/launch",
+    "autostart and settings",
+    "backup and synchronization",
+    "hardware and model inventory",
+    "GPU residency",
+    "paid-compute views",
+    "remote host/service control",
+    "notifications and telemetry"
+  ],
+  "firstSliceContract": {
+    "owns": ["ProjectEntry wire shape", "curated precedence", "bounded discovery", "stable ordering", "home-path shortening", "fail-soft results"],
+    "doesNotOwn": ["open/reveal host action", "editor selection", "project validation", "recent-project mutation", "Fleet catalog", "accelerator integration"],
+    "requiredSharedCases": 8,
+    "requiredHostEvidence": {"macos": "real native adapter", "windows": "remain preview until a real adapter passes", "linux": "planned-no-source"}
+  },
+  "identityPolicy": "Preserve io.harborline.tender, tender_lib, installed data paths, and current product/package identities during extraction; rename only under a separate migration decision.",
+  "findings": [
+    "Tender documentation claims clean-clone independence while CI and package metadata require a pinned Shipyard sibling checkout.",
+    "Tender build.rs optionally refreshes bundled manifests from a sibling Shipyard path.",
+    "Fleet-, ordinance-, and accelerator-derived sources are excluded from migration.",
+    "The draft htbx.projects interface overstated open, validate, and remember behavior; the first-slice contract is narrowed to proven listing/discovery behavior."
+  ]
+}

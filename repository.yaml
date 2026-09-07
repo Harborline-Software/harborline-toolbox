@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "repository": "harborline-toolbox",
+  "defaultBranch": "main",
+  "visibility": "private",
+  "remote": {
+    "status": "created",
+    "url": "https://github.com/Harborline-Software/harborline-toolbox.git",
+    "requiresMaintainerApproval": true,
+    "approved": "maintainer, 2026-08-28"
+  },
+  "license": "MIT",
+  "phase": 6,
+  "sourceAuthority": "earlier-product-unchanged-local-extracted-candidate",
+  "prohibitedSourceClasses": [
+    "agent-factory",
+    "ordinance",
+    "agent-memory",
+    "accelerators",
+    "external-sibling-source",
+    "build-output"
+  ]
+}

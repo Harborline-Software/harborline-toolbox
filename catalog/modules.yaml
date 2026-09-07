@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "repository": "harborline-toolbox",
+  "modules": {
+    "htbx.projects": {
+      "interface": {"path": "specs/modules/projects/interface.yaml", "revision": 1},
+      "owner": "toolbox-core",
+      "status": "extracted-candidate-conformant",
+      "dependencies": [],
+      "implementation": {
+        "path": "src/projects.rs",
+        "role": "deep-module",
+        "depth": {
+          "deletionTest": "PASS",
+          "redistributedComplexity": [
+            "curated parsing, fallback, and fail-soft policy in every host",
+            "bounded depth-one/depth-two traversal and Git-marker filtering in every host",
+            "HOME shortening and deterministic ordering in every consumer"
+          ]
+        }
+      },
+      "artifact": {"type": "cargo", "id": "tender", "version": "0.1.0", "library": "tender_lib", "manifest": "Cargo.toml"},
+      "conformance": {"fixture": "conformance/htbx.projects/fixtures.yaml", "nativeTests": "tests/projects_conformance.rs", "cases": 8}
+    },
+    "htbx.diagnostics": {"interface": {"path": "specs/modules/diagnostics/interface.yaml", "revision": 1}, "status": "inventory-complete-deferred-coupled"},
+    "htbx.updates": {"interface": {"path": "specs/modules/updates/interface.yaml", "revision": 1}, "status": "planned-no-real-source"},
+    "htbx.desktop-experience": {"interface": {"path": "specs/modules/desktop-experience/interface.yaml", "revision": 1}, "status": "inventory-complete-blocked-sibling-source"}
+  },
+  "projections": {
+    "desktop-core": {"role": "implementation", "status": "conformant", "path": "src/projects.rs", "sourcePresent": true},
+    "macos": {"role": "adapter", "status": "conformant", "path": "src/macos.rs", "installedDataPath": "~/Library/Application Support/Tender/projects.json", "sourcePresent": true},
+    "windows": {"role": "host", "status": "preview-no-source", "sourcePresent": false},
+    "linux": {"role": "host", "status": "planned-no-source", "sourcePresent": false}
+  }
+}

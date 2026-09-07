@@ -1,0 +1,9 @@
+{
+  "schemaVersion": 1,
+  "moduleId": "htbx.updates",
+  "interfaceRevision": 1,
+  "status": "draft-from-inventory",
+  "responsibility": "Discover, verify, stage, and apply Toolbox updates through platform-appropriate packaging and rollback.",
+  "security": ["Every update is authenticity-verified before installation."],
+  "cases": []
+}

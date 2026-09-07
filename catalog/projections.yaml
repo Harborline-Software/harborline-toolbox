@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "generatedFrom": "catalog/modules.yaml",
+  "projections": {
+    "desktop-core": {"role": "implementation", "status": "conformant", "path": "src/projects.rs", "sourcePresent": true},
+    "macos": {"role": "adapter", "status": "conformant", "path": "src/macos.rs", "installedDataPath": "~/Library/Application Support/Tender/projects.json", "sourcePresent": true},
+    "windows": {"role": "host", "status": "preview-no-source", "sourcePresent": false},
+    "linux": {"role": "host", "status": "planned-no-source", "sourcePresent": false}
+  },
+  "projectionMap": "catalog/modules.yaml#projections"
+}

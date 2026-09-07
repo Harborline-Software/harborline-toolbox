@@ -1,0 +1,84 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-08-28T00:00:00Z",
+  "issue": "HLF-022",
+  "moduleId": "htbx.projects",
+  "status": "PASS",
+  "command": "node tooling/run-projects-gate.mjs",
+  "qualityChecks": [
+    "repository validation",
+    "cargo fmt --check",
+    "cargo clippy -D warnings"
+  ],
+  "source": {
+    "repository": "tender",
+    "commit": "7647c209550eb7def6b7d3d2776e13ea6763dabe",
+    "path": "apps/desktop/src-tauri/src/projects.rs",
+    "sha256": "b050b9678049d12346b251ec9764c43056f3e384c88881f78ed597dff4b5ae49"
+  },
+  "counts": {
+    "neutralCases": 8,
+    "nativeFilesystemTests": 8,
+    "packagedArtifacts": 1,
+    "cleanArtifactConsumers": 1,
+    "packageEntries": 9,
+    "packageBytes": 4749,
+    "packageBytesMaximum": 100000,
+    "packageBytesNote": "windows run; the linux run produced 4736. Only the 100000-byte ceiling is enforced."
+  },
+  "identities": {
+    "rustPackage": "tender@0.1.0",
+    "rustLibrary": "tender_lib",
+    "macosInstalledData": "~/Library/Application Support/Tender/projects.json",
+    "bundleIdentifier": "io.harborline.tender",
+    "product": "Harborline Toolbox"
+  },
+  "projections": {
+    "desktopCore": "conformant",
+    "macos": "conformant",
+    "windows": "preview-no-source",
+    "linux": "planned-no-source"
+  },
+  "invariants": {
+    "sourceCheckoutUsedByConsumer": false,
+    "shipyardOrSiblingSourceDependencies": 0,
+    "fleetOrOrdinanceSourceDependencies": 0,
+    "acceleratorSourceDependencies": 0,
+    "windowsSourceDirectories": 0,
+    "linuxSourceDirectories": 0,
+    "externalRemotes": 0,
+    "packageAuthorityChanged": false,
+    "sourceAuthorityChanged": false
+  },
+  "verifiedHosts": [
+    {
+      "os": "windows",
+      "arch": "x86_64",
+      "rustc": "1.95.0",
+      "node": "24.14.1",
+      "tar": "GNU tar 1.35",
+      "result": "PASS",
+      "steps": "8/8",
+      "note": "also re-run with CARGO_TARGET_DIR set; PASS"
+    },
+    {
+      "os": "linux",
+      "arch": "x86_64",
+      "rustc": "1.98.0",
+      "node": "20.19.2",
+      "tar": "GNU tar 1.35",
+      "result": "PASS",
+      "steps": "8/8",
+      "via": "podman docker.io/library/rust:slim, source streamed from the working tree",
+      "note": "executes the forward-slash MAIN_SEPARATOR branch, which is the macOS code path"
+    },
+    {
+      "os": "macos",
+      "result": "PASS",
+      "steps": "8/8",
+      "via": "run in Terminal on the tailnet Mac by the maintainer and the output returned; SSH to that host is broken by an unrelated defect in the sshd/sshd-session socket handoff (getpeername returns EINVAL in the per-connection child), which is a fault of that machine and not of this repository.",
+      "toolchainVersions": "not captured in this run",
+      "note": "closes the lane that was NOT RUN when these fixes were committed. The separator fix, the packageEntries normalisation, the bare-name tar extraction and the CARGO_TARGET_DIR fix are now all executed on Darwin end to end, rather than argued to be no-ops there."
+    }
+  ]
+}

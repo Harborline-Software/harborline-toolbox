@@ -1,0 +1,9 @@
+{
+  "schemaVersion": 1,
+  "moduleId": "htbx.desktop-experience",
+  "interfaceRevision": 1,
+  "status": "draft-from-inventory",
+  "responsibility": "Define shared command, navigation, window, accessibility, and lifecycle behavior while leaving OS integration to hosts.",
+  "accessibility": ["Keyboard navigation, focus order, announcements, and reflow are conformance concerns."],
+  "cases": []
+}

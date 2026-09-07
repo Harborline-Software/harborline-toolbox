@@ -1,0 +1,63 @@
+{
+  "schemaVersion": 1,
+  "moduleId": "htbx.projects",
+  "cases": [
+    {
+      "id": "projects.curated.precedence",
+      "expected": [
+        {"name": "Curated", "path": "/curated/project", "status": "paused", "lastOpened": "2026-08-01T12:00:00Z"}
+      ]
+    },
+    {
+      "id": "projects.curated.empty-falls-back",
+      "expected": [
+        {"name": "fallback", "path": "~/Projects/fallback", "status": "active"}
+      ]
+    },
+    {
+      "id": "projects.discovery.depth-one",
+      "expected": [
+        {"name": "depth-one", "path": "~/Projects/depth-one", "status": "active"}
+      ]
+    },
+    {
+      "id": "projects.discovery.depth-two",
+      "expected": [
+        {"name": "depth-two", "path": "~/Projects/Harborline/depth-two", "status": "active"}
+      ]
+    },
+    {
+      "id": "projects.discovery.excludes-non-git-and-depth-three",
+      "expected": [
+        {"name": "included", "path": "~/Projects/included", "status": "active"}
+      ]
+    },
+    {
+      "id": "projects.discovery.stable-name-order",
+      "expected": [
+        {"name": "alpha", "path": "~/Projects/org-b/alpha", "status": "active"},
+        {"name": "middle", "path": "~/Projects/middle", "status": "active"},
+        {"name": "zulu", "path": "~/Projects/org-a/zulu", "status": "active"}
+      ]
+    },
+    {
+      "id": "projects.path.home-shortening",
+      "expected": [
+        {"name": "shortened", "path": "~/Projects/shortened", "status": "active"}
+      ]
+    },
+    {
+      "id": "projects.fail-soft.missing-invalid-unreadable",
+      "expectedVariants": {
+        "missing": [],
+        "invalidCuratedFallsBack": [
+          {"name": "fallback", "path": "~/Projects/fallback", "status": "active"}
+        ],
+        "unreadableCuratedFallsBack": [
+          {"name": "fallback", "path": "~/Projects/fallback", "status": "active"}
+        ],
+        "unreadableDiscovery": []
+      }
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "schemaVersion": 1,
+  "moduleId": "htbx.diagnostics",
+  "interfaceRevision": 1,
+  "status": "draft-from-inventory",
+  "responsibility": "Collect and present bounded local diagnostics with explicit privacy and redaction behavior.",
+  "security": ["Diagnostics never collect credentials or private file content by default."],
+  "cases": []
+}

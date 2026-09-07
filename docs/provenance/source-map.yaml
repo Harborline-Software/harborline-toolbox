@@ -1,0 +1,100 @@
+{
+  "schemaVersion": 1,
+  "sourceAuthority": {
+    "repository": "tender",
+    "commit": "7647c209550eb7def6b7d3d2776e13ea6763dabe",
+    "inventoryReadOnly": true
+  },
+  "records": [
+    {
+      "moduleIds": ["htbx.projects"],
+      "sourcePaths": [
+        "apps/desktop/src-tauri/src/projects.rs",
+        "apps/desktop/src-tauri/src/commands.rs#get_projects",
+        "apps/desktop/src/ipc/tauri.ts#getProjects",
+        "apps/desktop/src/screens/tabs/ProjectsTab.tsx",
+        "apps/desktop/src/toolbox/sections/ProjectsSection.tsx",
+        "apps/windows/src-tauri/src/commands.rs#get_projects"
+      ],
+      "sourceExtracted": true,
+      "sourceCommit": "7647c209550eb7def6b7d3d2776e13ea6763dabe",
+      "sourceSha256": "b050b9678049d12346b251ec9764c43056f3e384c88881f78ed597dff4b5ae49",
+      "targetImplementationSha256": "5b40ae700dd8750b9f461a0f4942bd253a391f498cc6069cb00b04ce076f5ede",
+      "targetMacosAdapterSha256": "7c05d97c7cd35bbe8327b088e50db3d1db6acf272b4dc843e563d1608c4ba34e",
+      "targetPaths": ["src/projects.rs", "src/macos.rs", "src/lib.rs", "tests/projects_conformance.rs", "conformance/htbx.projects/fixtures.yaml"],
+      "adaptations": [
+        "Introduced ProjectLocations so filesystem policy is explicit and deterministic under test, with the macOS installed path isolated in src/macos.rs.",
+        "Preserved get_projects as the HOME-based macOS compatibility entry point.",
+        "Added path tie-breaking when duplicate project names exist so ordering remains deterministic.",
+        "Built the ~/ display path with an explicit forward slash instead of the host separator. Tender only ever ran this on macOS, where Display already emits /, so the neutral fixture and the host agreed by luck rather than by construction; on Windows seven of the eight cases produced ~/Projects\\\\name. Replacing MAIN_SEPARATOR rather than a literal backslash leaves macOS byte-identical and keeps a backslash legal inside a Unix directory name."
+      ],
+      "selection": "first-slice",
+      "macosEvidence": "real fail-soft curated-or-discovered implementation",
+      "windowsEvidence": "static preview data; not a conformant host projection",
+      "nativeTests": 8,
+      "nextGate": "Keep Tender authoritative and defer coupled Toolbox slices until HLF-021 is resolved."
+    },
+    {
+      "moduleIds": ["htbx.diagnostics"],
+      "sourcePaths": [
+        "apps/desktop/src-tauri/src/commands.rs#collect_diagnostics",
+        "apps/desktop/src-tauri/src/commands.rs#get_log_tail",
+        "apps/desktop/src/ipc/tauri.ts",
+        "apps/desktop/src/toolbox/LogViewer.tsx"
+      ],
+      "sourceExtracted": false,
+      "selection": "deferred",
+      "reason": "Current diagnostics is coupled to Fleet service telemetry and has no module-owned privacy/redaction conformance suite."
+    },
+    {
+      "moduleIds": ["htbx.updates"],
+      "sourcePaths": ["apps/windows/src-tauri/src/commands.rs#check_updates"],
+      "sourceExtracted": false,
+      "selection": "planned-no-real-source",
+      "reason": "Windows returns an empty static list and macOS has no update implementation."
+    },
+    {
+      "moduleIds": ["htbx.desktop-experience"],
+      "sourcePaths": [
+        "apps/desktop/src-tauri/src/lib.rs",
+        "apps/desktop/src/toolbox/ToolboxApp.tsx",
+        "apps/desktop/src/theme/ThemeProvider.tsx",
+        "apps/windows/src-tauri/src/lib.rs"
+      ],
+      "sourceExtracted": false,
+      "selection": "blocked",
+      "reason": "The macOS frontend has a hard file-protocol dependency on Shipyard workspace-shell; Windows is a separate preview implementation."
+    }
+  ],
+  "identities": {
+    "macos": {
+      "npm": "tender@0.1.0 (private)",
+      "rustPackage": "tender@0.1.0",
+      "rustLibrary": "tender_lib",
+      "productName": "Harborline Toolbox",
+      "mainBinaryName": "Harborline Toolbox",
+      "bundleIdentifier": "io.harborline.tender",
+      "autostartLabel": "io.harborline.tender",
+      "curatedProjectData": "~/Library/Application Support/Tender/projects.json"
+    },
+    "windows": {
+      "npm": "@tender/windows@0.1.0 (private)",
+      "rustPackage": "tender-windows@0.1.0",
+      "rustLibrary": "tender_lib",
+      "productName": "Tender",
+      "bundleIdentifier": "io.harborline.tender",
+      "logData": "%APPDATA%\\Tender\\logs"
+    }
+  },
+  "candidateSourceDependencies": {
+    "hard": ["apps/desktop/package.json -> file:../../../shipyard/packages/workspace-shell", ".github/workflows/build-test.yml -> pinned Shipyard sparse checkout"],
+    "optional": ["apps/desktop/src-tauri/build.rs -> sibling Shipyard bundle snapshot refresh"]
+  },
+  "excluded": [
+    "Fleet agent-factory, orchestration, and Fleet-named source pending explicit reclassification",
+    "ordinance-derived resources",
+    "accelerator and Anchor/Bridge integration sources",
+    "company operations",
+    "build output and local state"
+  ]
+}

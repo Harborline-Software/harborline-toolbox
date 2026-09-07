@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "moduleId": "htbx.projects",
+  "interfaceRevision": 1,
+  "status": "extracted-candidate-conformant",
+  "responsibility": "List project workspaces from curated metadata or bounded Git discovery with deterministic, fail-soft behavior.",
+  "compatibility": [
+    "Preserve the ProjectEntry compatibility wire shape: name, path, active|paused|archived status, and optional lastOpened.",
+    "Preserve curated-list precedence and depth-two Git discovery for the first macOS projection.",
+    "Open or reveal is a host-shell action outside this module; validate and remember are outside the current capability set."
+  ],
+  "publicSurface": {
+    "wireTypes": ["ProjectEntry", "ProjectStatus"],
+    "deterministicEntryPoint": "projects::get_projects_from(ProjectLocations)",
+    "macosProjection": "macos::project_locations(home) and macos::get_projects()",
+    "legacyEntryPoint": "projects::get_projects() delegates to the macOS projection"
+  },
+  "cases": [
+    "projects.curated.precedence",
+    "projects.curated.empty-falls-back",
+    "projects.discovery.depth-one",
+    "projects.discovery.depth-two",
+    "projects.discovery.excludes-non-git-and-depth-three",
+    "projects.discovery.stable-name-order",
+    "projects.path.home-shortening",
+    "projects.fail-soft.missing-invalid-unreadable"
+  ]
+}

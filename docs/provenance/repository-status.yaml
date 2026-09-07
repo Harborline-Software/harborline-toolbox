@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "phase": 6,
+  "status": "PROJECTS_EXTRACTION_GATE_PASS",
+  "remote": "created-private-Harborline-Software/harborline-toolbox",
+  "verifiedSourceLanes": {
+    "macos": "conformant",
+    "windows": "preview-no-source",
+    "linux": "planned-no-source"
+  },
+  "legacyOrSiblingSourceDependencies": 0,
+  "candidateHardSiblingSourceDependencies": 1,
+  "candidateOptionalSiblingRefreshes": 1,
+  "prohibitedSourceFiles": 0,
+  "selectedFirstSlice": "htbx.projects",
+  "projectProof": {
+    "neutralCases": "8/8",
+    "nativeFilesystemTests": "8/8",
+    "packagedCrates": "1/1",
+    "cleanArtifactConsumers": "1/1",
+    "rustPackage": "tender@0.1.0",
+    "rustLibrary": "tender_lib",
+    "sourceAuthority": "Tender; unchanged"
+  },
+  "nextAction": "Keep Windows and Linux projections at their recorded maturity and defer coupled Toolbox slices until HLF-021 is resolved."
+}
