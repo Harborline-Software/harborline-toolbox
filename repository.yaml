@@ -9,7 +9,7 @@
     "requiresMaintainerApproval": true,
     "approved": "maintainer, 2026-08-28"
   },
-  "license": "MIT",
+  "license": "Apache-2.0",
   "phase": 6,
   "sourceAuthority": "earlier-product-unchanged-local-extracted-candidate",
   "prohibitedSourceClasses": [
