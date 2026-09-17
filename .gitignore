@@ -6,3 +6,7 @@ obj/
 artifacts/
 .DS_Store
 target/
+
+# session and lane artefacts; nothing under either is tracked
+.claude/
+.codex/
