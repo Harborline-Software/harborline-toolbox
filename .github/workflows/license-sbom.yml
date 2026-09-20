@@ -14,6 +14,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
+      - name: T-675 proof-only forced failure (throwaway, do not merge)
+        run: |
+          echo "sbom no longer carries a variable condition, so the required context now runs" \
+               "unconditionally and reflects a real result instead of a skip-as-success. This" \
+               "step forces that real result to be a failure, to show the required check can" \
+               "go red with the ACTIONS_ENABLED variable read as deleted (dependency-review's" \
+               "condition below points at a variable name that does not exist)."
+          exit 1
       - name: Generate SBOM (SPDX JSON, includes detected licenses)
         uses: anchore/sbom-action@v0
         with:
@@ -31,7 +39,7 @@ jobs:
             console.log(`ok: ${(s.packages||[]).length} packages, none on the deny list`);
           '
   dependency-review:
-    if: vars.ACTIONS_ENABLED == 'true' && github.event_name == 'pull_request'
+    if: vars.ACTIONS_ENABLED_DELETED_T675_PROOF == 'true' && github.event_name == 'pull_request'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
