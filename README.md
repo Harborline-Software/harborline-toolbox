@@ -1,32 +1,33 @@
 # Harborline Toolbox
 
-This repository begins with a fresh public history as of September 2026. The earlier private history is kept, unchanged, in the private archive repository, and every design decision it records is carried forward in the Harborline control tickets. Nothing was rewritten; the history simply starts here.
-
-
 > **Status: pre-release.** Harborline is under active development and is not ready for production use. APIs, schemas, storage formats and package names change without notice, and there are no supported installs yet. Source is licensed under [Apache-2.0](LICENSE); see [NOTICE](NOTICE) and the [trademark policy](TRADEMARKS.md).
 
-Harborline Toolbox is the independent Apache-2.0 desktop tool extracted from an earlier product. It
-will own a shared desktop implementation plus explicit macOS, Windows, and—only when
-verified—Linux host projections.
+Harborline Toolbox is an optional operator interface for installing, observing and managing Harborline applications and their supporting environment. It brings service health, diagnostics, logs and management actions into a desktop experience: a quick tray view for checking status and a larger window for investigation.
 
-The first extracted candidate is `htbx.projects`, a bounded Rust project-listing module preserving
-the compatibility package and library identities, `ProjectEntry` wire shape, and macOS installed-user
-data path. Eight neutral cases exercise curated precedence/fallback, depth-one/two Git discovery,
-exclusions, deterministic ordering, HOME shortening, and fail-soft behavior against native
-filesystem fixtures. Package and source authority remain with the earlier product until a separate
-cutover.
+Essential operations must remain available through supported interfaces independently of Toolbox. Toolbox must own no exclusive operational authority or state required to run Harborline. It may be bundled for desktop convenience without becoming a required dependency.
 
-Windows remains preview with no extracted implementation, and Linux remains planned with no source
-or placeholder directory. No Tauri host source, sibling application source, Fleet source,
-ordinance source, or accelerator source is part of this slice.
+For the shared product model and repository roles, read the [Harborline solution overview](https://github.com/Harborline-Software/harborline-app/blob/docs/solution-purpose/docs/solution-overview.md).
 
-Run the envelope gate with:
+## Scope and implementation
 
-```bash
+The [module catalog](catalog/modules.yaml) records Toolbox's modules; the [projection catalog](catalog/projections.yaml) records their implementation locations and status. [Specifications](specs/) define behavior and [conformance fixtures](conformance/) define shared checks. Use these sources to assess current coverage instead of treating the product purpose as a list of delivered features.
+
+Shared behavior belongs behind module interfaces; operating-system integrations belong in explicit host projections. A registered target or extracted module does not establish a runnable desktop application. Inspect implementation and verification evidence for the target you intend to use.
+
+## Verify
+
+From the repository root, run:
+
+```sh
 node tooling/validate-repository.mjs
 cargo test --locked
 node tooling/run-projects-gate.mjs
 ```
 
-The gate checks formatting, all eight filesystem cases, the exact nine-entry crate payload, a
-100,000-byte package budget, and a disposable consumer compiled only from the extracted crate.
+The [repository validator](tooling/validate-repository.mjs) checks metadata and boundaries. [Cargo.toml](Cargo.toml) declares the Rust workspace, and the [projects gate](tooling/run-projects-gate.mjs) defines extraction and consumer checks. Consult these files for current requirements and budgets; recorded or generated totals belong with their evidence rather than in this introduction.
+
+## Contribute
+
+[CONTRIBUTING.md](CONTRIBUTING.md) explains module and host boundaries and preservation of installed-user identities. [Repository metadata](repository.yaml) records source and package authority. Review those constraints before changing compatibility or distributing an artifact.
+
+For usage questions and bug reports, see [SUPPORT.md](SUPPORT.md). Report sensitive vulnerabilities through [SECURITY.md](SECURITY.md).
